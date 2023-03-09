@@ -1,0 +1,8 @@
+/datas/
+**/__pycache__/
+notebooks/*
+**/.ipynb_checkpoints
+/logs/
+/outputs/
+/checkpoints/
+*-Copy*
