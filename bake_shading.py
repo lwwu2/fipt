@@ -4,7 +4,6 @@ import mitsuba
 mitsuba.set_variant('cuda_ad_rgb')
 
 import math
-import numpy as np
 
 import os
 os.environ["OPENCV_IO_ENABLE_OPENEXR"]="1"

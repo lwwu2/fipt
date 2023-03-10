@@ -4,7 +4,6 @@ import torch.nn.functional as NF
 import mitsuba
 mitsuba.set_variant('cuda_ad_rgb')
 
-import math
 from .ops import *
 
 def ray_intersect(scene,xs,ds):
@@ -37,7 +36,7 @@ def ray_intersect(scene,xs,ds):
     valid = (~ts.isinf())
     
     idx[~valid] = -1
-    nromals = double_sided(-ds,normals)
+    normals = double_sided(-ds,normals)
     return positions,normals,ret.uv.torch(),idx,valid
 
 def path_tracing_det_diff(scene,emitter_net,material_net,
@@ -164,7 +163,7 @@ def path_tracing_det_spec(scene,emitter_net,material_net,
     active_next = torch.ones(B*spp,dtype=bool,device=device)
     
     # importance sampling brdf
-    wi,brdf_pdf,brdf_weight0,brdf_weight1 = material_net.sample_specular(
+    wi,_,brdf_weight0,brdf_weight1 = material_net.sample_specular(
         torch.rand(len(normal),2,device=device),wo,normal,roughness_level)
 
     # find next intersection
@@ -172,7 +171,7 @@ def path_tracing_det_spec(scene,emitter_net,material_net,
 
     # get surface BRDF and Le
     mat_next = material_net(position_next)
-    Le,emit_pdf,valid_next = emitter_net.eval_emitter(position_next,wi,triangle_idx,mat_next['roughness'])
+    Le,_,valid_next = emitter_net.eval_emitter(position_next,wi,triangle_idx,mat_next['roughness'])
 
     # update throughput
     L0[active_next] += brdf_weight0*Le
