@@ -22,10 +22,10 @@ import time
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('--scene', type=str, required=True)
-    parser.add_argument('--output', type=str, required=True)
-    parser.add_argument('--dataset',type=str,required=True)
-    parser.add_argument('--voxel_num',type=int,default=256)
+    parser.add_argument('--scene', type=str, required=True, help='dataset folder')
+    parser.add_argument('--output', type=str, required=True, help='output path')
+    parser.add_argument('--dataset',type=str,required=True, help='dataset type')
+    parser.add_argument('--voxel_num',type=int,default=256, help='resolution for voxel radiance cache')
     args = parser.parse_args()
 
     device = torch.device(0) # use gpu device 0

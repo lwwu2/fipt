@@ -96,6 +96,7 @@ class ModelTrainer(pl.LightningModule):
         return
 
     def gamma(self,x):
+        """ tone mapping function """
         mask = x <= 0.0031308
         ret = torch.empty_like(x)
         ret[mask] = 12.92*x[mask]
