@@ -171,7 +171,7 @@ To install [torch_scatter](https://pytorch-geometric.readthedocs.io/en/latest/in
 pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-1.13.0+cu117.html
 ```
 
-Go to the link, find the `torch_scatter` wheel which matches your Python (`cp**`), torch (`pt***`) and cuda version (`cu***`). Get the link to the wheel, and run something like:
+Go to the link by the end, find the `torch_scatter` wheel which matches your Python (`cp**`), torch (`pt***`) and cuda version (`cu***`). Get the link to the wheel, and run something like:
 
 ``` bash
 pip install torch_scatter -f https://data.pyg.org/whl/torch-1.12.0%2Bcu113/torch_scatter-2.1.0%2Bpt112cu113-cp38-cp38-linux_x86_64.whl
