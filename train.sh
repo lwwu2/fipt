@@ -5,16 +5,18 @@ DATASET='synthetic'
 SCENE='kitchen'
 # whether has part segmentation
 HAS_PART=1
+CUDA_DEVICE=0
+export CUDA_VISIBLE_DEVICES=$CUDA_DEVICE
 
-# shading initialization
-python bake_shading.py --scene $DATASET_ROOT$SCENE\
-                       --output 'outputs/'$SCENE --dataset $DATASET
+# # shading initialization
+# python bake_shading.py --scene $DATASET_ROOT$SCENE\
+#                        --output 'outputs/'$SCENE --dataset $DATASET
 
 # BRDF-emission estimation
-python train.py --experiment_name $SCENE --device 0 --max_epochs 2\
-        --dataset $DATASET $DATASET_ROOT$SCENE 'outputs/'$SCENE\
-        --voxel_path 'outputs/'$SCENE'/vslf.npz'\
-        --has_part $HAS_PART
+# python train.py --experiment_name $SCENE --device 0 --max_epochs 2\
+#         --dataset $DATASET $DATASET_ROOT$SCENE 'outputs/'$SCENE\
+#         --voxel_path 'outputs/'$SCENE'/vslf.npz'\
+#         --has_part $HAS_PART
 
 # extract emitters
 python extract_emitter.py --scene $DATASET_ROOT$SCENE\

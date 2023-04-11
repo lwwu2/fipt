@@ -57,7 +57,10 @@ if __name__ == '__main__':
 
 
     # get mesh vertices and triangles
-    mesh = trimesh.load_mesh(os.path.join(SCENE,'scene.obj'))
+    mesh_path = os.path.join(SCENE,'scene.obj')
+    from pathlib import Path
+    assert Path(mesh_path).exists(), 'scene.obj not found at: %s'%mesh_path
+    mesh = trimesh.load_mesh(mesh_path)
     vertices = torch.from_numpy(np.array(mesh.vertices)).float()
     faces = torch.from_numpy(np.array(mesh.faces))
 
