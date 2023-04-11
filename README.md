@@ -145,7 +145,7 @@ By default, the notebooks load pretrained model. To use your trained models, cha
 Make sure you select the right kernel which uses the correct Python environment as configured above.
 
 * `demo/brdf-emission.ipynb` : visualize BRDF, emission, and rendering for selected views.
-* `demo/relighting.ipymn`: customizable relighting and object insertion. The scene are written in mitsuba3.
+* `demo/relighting.ipynb`: customizable relighting and object insertion. The scene are written in mitsuba3.
 
 ## Citation
 
