@@ -2,7 +2,7 @@
 
 This repo contains the demo code for [FIPT](). Full release is pending (see #TODO section)
 
-### [Project Page](https://jerrypiglet.github.io/fipt-ucsd/) | [Paper]() | [Data](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link)
+### [Project Page](https://jerrypiglet.github.io/fipt-ucsd/) | [Paper]() | [Data download](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) | [Data generation](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt)
 
 
 ## Setup
@@ -29,7 +29,7 @@ Also, install `torch_scatter`. See the #FAQ section for detailed instructions.
 
 For the current release, we provide demo of one synthetic scene and one real world scene. They may not exactly match the results reported in the paper.
 
-You can download the processed data from [here](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) (download zip or folders). Or you can check [fipt-data](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt) for generating data (synthetic/real) from scratch (i.e. synthetic scenes from [XML files](https://benedikt-bitterli.me/resources/), or real world data from RAW HDR captures.).
+You can download the processed data from [here](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) (download zip or folders). Or you can check [rui-indoorinv-data (branch: `fipt`)](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt) for generating data (synthetic/real) from scratch (i.e. synthetic scenes from [Mitsuba XML files by Benedikt Bitterli](https://benedikt-bitterli.me/resources/), or real world data from RAW HDR captures.).
 
 Organize the data as:
 
