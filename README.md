@@ -2,7 +2,7 @@
 
 This repo contains the demo code for [FIPT](). Full release is pending (see #TODO section)
 
-### [Project Page]() | [Paper]() | [Data]()
+### [Project Page](https://jerrypiglet.github.io/fipt-ucsd/) | [Paper]() | [Data]()
 
 
 ## Setup
