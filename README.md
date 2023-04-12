@@ -1,6 +1,26 @@
+<!--ts-->
+- [FIPT: Factorized Inverse Path Tracing](#fipt-factorized-inverse-path-tracing)
+    - [Project Page | Paper | Data download | Data generation](#project-page--paper--data-download--data-generation)
+  - [Setup](#setup)
+  - [Data](#data)
+  - [Train the model](#train-the-model)
+  - [Notebook demo](#notebook-demo)
+  - [Citation](#citation)
+  - [TODO](#todo)
+  - [FAQ](#faq)
+    - [Install torch\_scatter](#install-torch_scatter)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: ruizhu, at: Tue Apr 11 14:07:34 PDT 2023 -->
+
+<!--te-->
+
+<!-- (fipt) ruizhu@ubuntu:~/Documents/Projects/fipt$ ../gh-md-toc --insert README.md  -->
+
+
 # FIPT: Factorized Inverse Path Tracing
 
-This repo contains the demo code for [FIPT](). Full release is pending (see #TODO section)
+This repo contains the demo code for [FIPT](https://jerrypiglet.github.io/fipt-ucsd/). Full release is pending (see [#TODO](#todo)).
 
 ### [Project Page](https://jerrypiglet.github.io/fipt-ucsd/) | [Paper]() | [Data download](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) | [Data generation](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt)
 
@@ -29,7 +49,9 @@ Also, install `torch_scatter`. See the #FAQ section for detailed instructions.
 
 For the current release, we provide demo of one synthetic scene and one real world scene. They may not exactly match the results reported in the paper.
 
-You can download the processed data from [here](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) (download zip or folders). Or you can check [rui-indoorinv-data (branch: `fipt`)](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt) for generating data (synthetic/real) from scratch (i.e. synthetic scenes from [Mitsuba XML files by Benedikt Bitterli](https://benedikt-bitterli.me/resources/), or real world data from RAW HDR captures.).
+You can download the processed data from [here](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) (download zip or folders). 
+
+To generate data (synthetic/real) from scratch (i.e. synthetic scenes from [Mitsuba XML files by Benedikt Bitterli](https://benedikt-bitterli.me/resources/), or real world data from RAW HDR captures.), or to access tools to visualize/convert data to multiple formats, please check [rui-indoorinv-data (branch: `fipt`)](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt). 
 
 Organize the data as:
 
