@@ -2,8 +2,7 @@
 
 This repo contains the demo code for [FIPT](). Full release is pending (see #TODO section)
 
-### [Project Page](https://jerrypiglet.github.io/fipt-ucsd/) | [Paper]() | [Data download](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) | [Data generation](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt)
-
+### [Project Page](https://jerrypiglet.github.io/fipt-ucsd/) | [Paper](https://arxiv.org/abs/2304.05669) | [Preprocessed Data Download](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) | [Scene Data Generation from Scratch](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt)
 
 ## Setup
 
@@ -152,6 +151,14 @@ Make sure you select the right kernel which uses the correct Python environment 
 If you find our work is useful, please consider cite:
 
 ```
+@misc{fipt2023,
+      title={Factorized Inverse Path Tracing for Efficient and Accurate Material-Lighting Estimation}, 
+      author={Liwen Wu and Rui Zhu and Mustafa B. Yaldiz and Yinhao Zhu and Hong Cai and Janarbek Matai and Fatih Porikli and Tzu-Mao Li and Manmohan Chandraker and Ravi Ramamoorthi},
+      year={2023},
+      eprint={2304.05669},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
 ```
 
 ## TODO
