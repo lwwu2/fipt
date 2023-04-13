@@ -1,5 +1,5 @@
 # data folder
-DATASET_ROOT='../data/indoor_synthetic/'
+DATASET_ROOT='data/indoor_synthetic/'
 DATASET='synthetic'
 # scene name
 SCENE='kitchen'

@@ -1,26 +1,19 @@
 import torch
 import torch.nn.functional as NF
-
 import mitsuba
 mitsuba.set_variant('cuda_ad_rgb')
 
-import math
-
 from utils.dataset import RealDataset,SyntheticDataset
 from utils.path_tracing import ray_intersect
-
-
 from model.mlps import ImplicitMLP
-import os
 
+import math
+import os
 import numpy as np
 import trimesh
-
-
-
+import time
 from tqdm import tqdm
 from argparse import ArgumentParser
-
 
 if __name__ == '__main__':
     parser = ArgumentParser()

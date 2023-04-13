@@ -1,16 +1,38 @@
+<!--Generate the TOC via: -->
+<!-- (bash) ../gh-md-toc --insert README.md-->
+<!--See https://github.com/ekalinin/github-markdown-toc#readme-->
+
+<!--ts-->
+* [FIPT: Factorized Inverse Path Tracing](#fipt-factorized-inverse-path-tracing)
+   * [Setup](#setup)
+   * [Data](#data)
+   * [Train the model](#train-the-model)
+   * [Notebook demo](#notebook-demo)
+   * [Citation](#citation)
+   * [TODO](#todo)
+   * [FAQ](#faq)
+      * [Install torch_scatter](#install-torch_scatter)
+      * [Install conda env to Jupyter](#install-conda-env-to-jupyter)
+      * [Reference training log](#reference-training-log)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: ruizhu, at: Thu Apr 13 04:43:32 PM PDT 2023 -->
+
+<!--te-->
+
 # FIPT: Factorized Inverse Path Tracing
 
-This repo contains the demo code for [FIPT](). Full release is pending (see #TODO section)
+This repo contains the demo code for [FIPT](https://jerrypiglet.github.io/fipt-ucsd/). Full release is pending (see [#TODO](#todo)).
 
 ### [Project Page](https://jerrypiglet.github.io/fipt-ucsd/) | [Paper](https://arxiv.org/abs/2304.05669) | [Preprocessed Data Download](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) | [Scene Data Generation from Scratch](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt)
 
 ## Setup
 
 * python 3.8
-* pytorch 1.13
-* pytorch-lightning 1.2.10
+* pytorch 1.13.1
+* pytorch-lightning 1.9 # works with torch 1.13.1: https://lightning.ai/docs/pytorch/stable/versioning.html#compatibility-matrix
 * torch-scatter 2.1.0
-* mitsuba 3.1.3
+* mitsuba 3.2.1
 * CUDA 11.7
 
 Set up the environment via:
@@ -18,11 +40,12 @@ Set up the environment via:
 ``` bash
 conda create --name fipt python=3.8 pip
 conda activate fipt
+# firstly, install torch==1.31.1 according to your platform; check: https://pytorch.org/get-started/previous-versions/
 pip install -r requirements.txt
 pip install git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch # tested with tinycudann-1.7
 ```
 
-Also, install `torch_scatter`. See the #FAQ section for detailed instructions.
+Also, install `torch_scatter`. See the [#FAQ](#faq) for detailed instructions.
 
 ## Data
 
@@ -58,21 +81,19 @@ Organize the data as:
   - ClassRoom
     - ... -->
 
-
-
 ```
 .
 ├── data/
 │   ├── indoor_synthetic/
 │   │   └── kitchen/
-│   │       ├── scene.obj             # scene geometry
+│   │       ├── scene.obj               # scene geometry
 │   │       └── train | val
 │   │           ├── transforms.json     # camera parameters
 │   │           ├── Image/ID_0001.exr   # HDR image
 │   │           └── segmentation/ID.exr # semantic segmentation
 │   └── real/
 │       └── ClassRoom/
-│           ├── scene.obj             # scene geometry
+│           ├── scene.obj           # scene geometry
 │           ├── cam.txt             # each row of each camera is: origin, lookat location, and up; OpenCV convention (right-down-forward)
 │           ├── K_list.txt          # camera instrinsics list
 │           ├── Image/ID_0001.exr   # HDR image
@@ -141,7 +162,7 @@ The script contains 4 subroutines:
 
 By default, the notebooks load pretrained model. To use your trained models, change all occurances of `pretrained/` to `outputs/`.
 
-Make sure you select the right kernel which uses the correct Python environment as configured above.
+Make sure you select the right kernel which uses the correct Python environment as configured above. See [#FAQ](#install-conda-env-to-jupyter)
 
 * `demo/brdf-emission.ipynb` : visualize BRDF, emission, and rendering for selected views.
 * `demo/relighting.ipynb`: customizable relighting and object insertion. The scene are written in mitsuba3.
@@ -178,14 +199,33 @@ To install [torch_scatter](https://pytorch-geometric.readthedocs.io/en/latest/in
 pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-1.13.0+cu117.html
 ```
 
-Go to the link by the end, find the `torch_scatter` wheel which matches your Python (`cp**`), torch (`pt***`) and cuda version (`cu***`). Get the link to the wheel, and run something like:
+You can fist try to install it directly:
+
+``` bash
+pip install torch_scatter -f https://data.pyg.org/whl/torch-1.13.0+cu117.html
+```
+
+Try this and hopefully no error occurs:
+
+```
+python -c "import torch_scatter"
+```
+
+If not, go to the link by the end of the first code block (e.g. https://data.pyg.org/whl/torch-1.13.0+cu117.html), find the `torch_scatter` wheel which matches your Python (`cp**`), torch (`pt***`) and cuda version (`cu***`). Get the link to the wheel, and run something like:
 
 ``` bash
 pip install torch_scatter -f https://data.pyg.org/whl/torch-1.12.0%2Bcu113/torch_scatter-2.1.0%2Bpt112cu113-cp38-cp38-linux_x86_64.whl
 ```
 
-Try this and make sure no error occurs:
+### Install conda env `fipt` to Jupyter
 
+``` bash
+conda activate fipt
+python -m ipykernel install --user --name=fipt
+# then launch Jupyter Notebook: (fipt) ~/Documents/Projects/fipt$ jupyter notebook
+# select Kernel -> Change kernel -> fipt
 ```
-python -c "import torch_scatter"
-```
+
+### Reference training log
+
+Training log on a 3090 GPU for the `kitchen` scene: see `train.log` (look for `...time (s): ...`).

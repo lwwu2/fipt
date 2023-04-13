@@ -112,6 +112,9 @@ if __name__ == '__main__':
         im_id += 1
 
 
+    print('[refine_shading - diffuse] time (s): ', time.time()-start_time)
+    start_time = time.time()
+
     # refine spacular shadings
     print('refine specular')
     output_path = os.path.join(OUTPUT_PATH,'specular')
@@ -159,4 +162,4 @@ if __name__ == '__main__':
             cv2.imwrite(os.path.join(output_path,'{:03d}_1_{}.exr'.format(im_id,r_idx)),L1[:,:,[2,1,0]])
         im_id += 1
 
-    print(time.time()-start_time)
+    print('[refine_shading - specular] time (s): ', time.time()-start_time)

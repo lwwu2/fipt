@@ -1,0 +1,91 @@
+(fipt) ~/Documents/Projects/fipt$ sh train.sh
+find scene bound
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [00:02<00:00, 75.23it/s]
+find visible voxels
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [00:02<00:00, 75.05it/s]
+bake voxel surface light field
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [00:03<00:00, 61.54it/s]
+[bake_shading - init] time (s):  8.806763172149658
+bake diffuse
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [01:24<00:00,  2.40it/s]
+[bake_shading - diffuse] time (s):  84.17961955070496
+bake specular
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [06:08<00:00,  1.82s/it]
+[bake_shading - specular] time (s):  368.43581557273865
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name          | Type        | Params
+----------------------------------------------
+0 | material      | NGPBRDF     | 28.0 M
+1 | emission_mask | ImplicitMLP | 98.9 K
+----------------------------------------------
+28.1 M    Trainable params
+0         Non-trainable params
+28.1 M    Total params
+112.249   Total estimated model params size (MB)
+Sanity Checking DataLoader 0:   0%|                                                                                                                         | 0/2 [00:00<?, ?it/s]/home/ruizhu/miniconda3/envs/fipt/lib/python3.8/site-packages/pytorch_lightning/utilities/data.py:84: UserWarning: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 204800. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+  warning_cache.warn(
+Epoch 1: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 5058/5058 [01:53<00:00, 44.58it/s, loss=0.0375, v_num=4]`Trainer.fit` stopped: `max_epochs=2` reached.
+Epoch 1: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 5058/5058 [01:54<00:00, 44.31it/s, loss=0.0375, v_num=4]
+[train - BRDF-emission] time (s):  259.7820842266083
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 13885/13885 [00:12<00:00, 1106.51it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [00:02<00:00, 72.01it/s]
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1500/1500 [00:00<00:00, 6403.46it/s]
+refine diffuse
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [04:06<00:00,  1.22s/it]
+[refine_shading - diffuse] time (s):  246.5557940006256
+refine specular
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [14:31<00:00,  4.31s/it]
+[refine_shading - specular] time (s):  871.0807709693909
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+Missing logger folder: logs/kitchen1
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name          | Type        | Params
+----------------------------------------------
+0 | material      | NGPBRDF     | 28.0 M
+1 | emission_mask | ImplicitMLP | 98.9 K
+----------------------------------------------
+28.1 M    Trainable params
+0         Non-trainable params
+28.1 M    Total params
+112.249   Total estimated model params size (MB)
+Sanity Checking DataLoader 0:   0%|                                                                                                                         | 0/2 [00:00<?, ?it/s]/home/ruizhu/miniconda3/envs/fipt/lib/python3.8/site-packages/pytorch_lightning/utilities/data.py:84: UserWarning: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 204800. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+  warning_cache.warn(
+Epoch 1: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 5058/5058 [01:54<00:00, 44.28it/s, loss=0.0323, v_num=0]`Trainer.fit` stopped: `max_epochs=2` reached.
+Epoch 1: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 5058/5058 [01:54<00:00, 44.05it/s, loss=0.0323, v_num=0]
+[train - BRDF-emission] time (s):  260.9254107475281
+refine diffuse
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [04:07<00:00,  1.23s/it]
+[refine_shading - diffuse] time (s):  247.4599928855896
+refine specular
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 202/202 [14:27<00:00,  4.29s/it]
+[refine_shading - specular] time (s):  867.2592620849609
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+Missing logger folder: logs/kitchen2
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name          | Type        | Params
+----------------------------------------------
+0 | material      | NGPBRDF     | 28.0 M
+1 | emission_mask | ImplicitMLP | 98.9 K
+----------------------------------------------
+28.1 M    Trainable params
+0         Non-trainable params
+28.1 M    Total params
+112.249   Total estimated model params size (MB)
+Sanity Checking DataLoader 0:   0%|                                                                                                                         | 0/2 [00:00<?, ?it/s]/home/ruizhu/miniconda3/envs/fipt/lib/python3.8/site-packages/pytorch_lightning/utilities/data.py:84: UserWarning: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 204800. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+  warning_cache.warn(
+Epoch 1: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 5058/5058 [01:54<00:00, 44.23it/s, loss=0.0334, v_num=0]`Trainer.fit` stopped: `max_epochs=2` reached.
+Epoch 1: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 5058/5058 [01:54<00:00, 43.99it/s, loss=0.0334, v_num=0]
+[train - BRDF-emission] time (s):  261.3217341899872

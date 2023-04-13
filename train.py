@@ -1,16 +1,16 @@
 
 import torch
+torch.set_float32_matmul_precision('high')
 import torch.nn.functional as NF
 import torch.optim as optim
 from torch.utils.data import DataLoader
-
 import torch_scatter
+import time
 
 import pytorch_lightning as pl
 from pytorch_lightning import Trainer
 from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning.callbacks import ModelCheckpoint
-
 import mitsuba
 mitsuba.set_variant('cuda_ad_rgb')
 
@@ -74,7 +74,7 @@ class ModelTrainer(pl.LightningModule):
             dataset = InvRealDataset(dataset_path,cache_path,pixel=True,split='train',
                                        batch_size=self.hparams.batch_size,has_part=self.hparams.has_part)
        
-        return DataLoader(dataset, batch_size=None)
+        return DataLoader(dataset, batch_size=None, num_workers=self.hparams.num_workers)
        
     def on_train_epoch_start(self,):
         """ resample training batch """
@@ -90,7 +90,7 @@ class ModelTrainer(pl.LightningModule):
             dataset = RealDataset(dataset_path,pixel=False,split='val')
         
         self.img_hw = dataset.img_hw
-        return DataLoader(dataset, shuffle=False,batch_size=None)
+        return DataLoader(dataset, shuffle=False, batch_size=None, num_workers=self.hparams.num_workers)
 
     def forward(self, points, view):
         return
@@ -356,14 +356,33 @@ if __name__ == '__main__':
     # setup model trainer
     model = ModelTrainer(hparams)
     
+    # trainer = Trainer.from_argparse_args(
+    #     args,
+    #     resume_from_checkpoint=last_ckpt,
+    #     logger=logger,
+    #     checkpoint_callback=checkpoint_callback,
+    #     flush_logs_every_n_steps=1,
+    #     log_every_n_steps=1,
+    #     max_epochs=args.max_epochs
+    # )
+
+    # trainer.fit(model)
+    
+    # Update to lightning 1.9
     trainer = Trainer.from_argparse_args(
         args,
-        resume_from_checkpoint=last_ckpt,
+        accelerator='gpu', devices=[0], gpus=None, 
         logger=logger,
-        checkpoint_callback=checkpoint_callback,
-        flush_logs_every_n_steps=1,
+        callbacks=[checkpoint_callback],
         log_every_n_steps=1,
-        max_epochs=args.max_epochs
+        max_epochs=args.max_epochs, 
     )
 
-    trainer.fit(model)
+    start_time = time.time()
+    
+    trainer.fit(
+        model, 
+        ckpt_path=last_ckpt, 
+        )
+    
+    print('[train - BRDF-emission] time (s): ', time.time()-start_time)

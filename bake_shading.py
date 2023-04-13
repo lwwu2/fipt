@@ -13,7 +13,7 @@ from utils.dataset import SyntheticDataset,RealDataset
 from utils.path_tracing import ray_intersect
 from model.slf import VoxelSLF
 from model.brdf import BaseBRDF
-
+from pathlib import Path
 from tqdm import tqdm
 from argparse import ArgumentParser
 import time
@@ -33,11 +33,14 @@ if __name__ == '__main__':
     OUTPUT_PATH = args.output
 
     # load mesh
+    mesh_path = os.path.join(DATASET_PATH,'scene.obj')
+    assert Path(mesh_path).exists(), 'mesh not found: '+mesh_path
+    
     scene = mitsuba.load_dict({
         'type': 'scene',
         'shape_id':{
             'type': 'obj',
-            'filename': os.path.join(DATASET_PATH,'scene.obj')
+            'filename': mesh_path, 
         }
     })
 
@@ -130,11 +133,13 @@ if __name__ == '__main__':
 
     denoiser = mitsuba.OptixDenoiser(img_hw[::-1])
 
+    print('[bake_shading - init] time (s): ', time.time()-start_time)
+    start_time = time.time()
+
     # bake diffuse shading
     print('bake diffuse')
     output_path = os.path.join(OUTPUT_PATH,'diffuse')
     os.makedirs(output_path,exist_ok=True)
-
     
     SPP = 256
     
@@ -181,6 +186,9 @@ if __name__ == '__main__':
         cv2.imwrite(os.path.join(output_path,'{:03d}.exr'.format(im_id)),Ld[:,:,[2,1,0]])
         im_id += 1
     
+    print('[bake_shading - diffuse] time (s): ', time.time()-start_time)
+    start_time = time.time()
+
     # bake specular shadings
     print('bake specular')
     output_path = os.path.join(OUTPUT_PATH,'specular')
@@ -250,5 +258,4 @@ if __name__ == '__main__':
             cv2.imwrite(os.path.join(output_path,'{:03d}_1_{}.exr'.format(im_id,r_idx)),Ls1[:,:,[2,1,0]])
         im_id += 1
     
-    
-    print('time: ', time.time()-start_time)
+    print('[bake_shading - specular] time (s): ', time.time()-start_time)
