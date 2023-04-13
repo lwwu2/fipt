@@ -354,14 +354,34 @@ if __name__ == '__main__':
     # setup model trainer
     model = ModelTrainer(hparams)
     
-    trainer = Trainer.from_argparse_args(
-        args,
-        resume_from_checkpoint=last_ckpt,
+    # trainer = Trainer.from_argparse_args(
+    #     args,
+    #     resume_from_checkpoint=last_ckpt,
+    #     logger=logger,
+    #     checkpoint_callback=checkpoint_callback,
+    #     flush_logs_every_n_steps=1,
+    #     log_every_n_steps=1,
+    #     max_epochs=args.max_epochs
+    # )
+    
+    # trainer.fit(model)
+    
+    '''
+    trying to be compatible with torch 2.x and pytorch_lightning 2.x
+    '''
+    trainer = Trainer(
+        # **vars(args), 
+        # resume_from_checkpoint=last_ckpt,
+        accelerator='gpu', devices=[0], 
         logger=logger,
-        checkpoint_callback=checkpoint_callback,
-        flush_logs_every_n_steps=1,
+        # checkpoint_callback=checkpoint_callback,
+        callbacks=[checkpoint_callback],
+        # flush_logs_every_n_steps=1,
         log_every_n_steps=1,
         max_epochs=args.max_epochs
     )
 
-    trainer.fit(model)
+    trainer.fit(
+        model, 
+        ckpt_path=last_ckpt, 
+    )

@@ -178,7 +178,7 @@ Make sure you select the right kernel which uses the correct Python environment 
 If you find our work is useful, please consider cite:
 
 ```
-@misc{wu2023factorized,
+@misc{fipt2023,
       title={Factorized Inverse Path Tracing for Efficient and Accurate Material-Lighting Estimation}, 
       author={Liwen Wu and Rui Zhu and Mustafa B. Yaldiz and Yinhao Zhu and Hong Cai and Janarbek Matai and Fatih Porikli and Tzu-Mao Li and Manmohan Chandraker and Ravi Ramamoorthi},
       year={2023},
