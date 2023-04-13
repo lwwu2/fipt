@@ -1,7 +1,8 @@
-torch==1.13.1
-torchvision==0.14.1
-pytorch-lightning==1.2.10
+torch==2.0.0
+torchvision
+pytorch-lightning
 mitsuba==3.2.1
+
 opencv-python==4.7.0.72
 Pillow==9.5.0
 trimesh==3.21.4
