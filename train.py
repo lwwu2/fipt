@@ -72,7 +72,7 @@ class ModelTrainer(pl.LightningModule):
                                        batch_size=self.hparams.batch_size,has_part=self.hparams.has_part)
         elif dataset_name == 'real':
             dataset = InvRealDataset(dataset_path,cache_path,pixel=True,split='train',
-                                       batch_size=self.hparams.batch_size,has_part=self.hparams.has_part)
+                                       batch_size=self.hparams.batch_size)
        
         return DataLoader(dataset, batch_size=None, num_workers=self.hparams.num_workers)
        
