@@ -3,17 +3,18 @@
 <!--See https://github.com/ekalinin/github-markdown-toc#readme-->
 
 <!--ts-->
-* [FIPT: Factorized Inverse Path Tracing](#fipt-factorized-inverse-path-tracing)
-   * [Setup](#setup)
-   * [Data](#data)
-   * [Train the model](#train-the-model)
-   * [Notebook demo](#notebook-demo)
-   * [Citation](#citation)
-   * [TODO](#todo)
-   * [FAQ](#faq)
-      * [Install torch_scatter](#install-torch_scatter)
-      * [Install conda env to Jupyter](#install-conda-env-to-jupyter)
-      * [Reference training log](#reference-training-log)
+- [FIPT: Factorized Inverse Path Tracing](#fipt-factorized-inverse-path-tracing)
+    - [Project Page | Paper | Preprocessed Data Download | Scene Data Generation from Scratch](#project-page--paper--preprocessed-data-download--scene-data-generation-from-scratch)
+  - [Setup](#setup)
+  - [Data](#data)
+  - [Train the model](#train-the-model)
+  - [Notebook demo](#notebook-demo)
+  - [Citation](#citation)
+  - [TODO](#todo)
+  - [FAQ](#faq)
+    - [Install torch\_scatter](#install-torch_scatter)
+    - [Install conda env `fipt` to Jupyter](#install-conda-env-fipt-to-jupyter)
+    - [Reference training log](#reference-training-log)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: ruizhu, at: Thu Apr 13 04:43:32 PM PDT 2023 -->
@@ -24,7 +25,7 @@
 
 This repo contains the demo code for [FIPT](https://jerrypiglet.github.io/fipt-ucsd/). Full release is pending (see [#TODO](#todo)).
 
-### [Project Page](https://jerrypiglet.github.io/fipt-ucsd/) | [Paper](https://arxiv.org/abs/2304.05669) | [Preprocessed Data Download](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) | [Scene Data Generation from Scratch](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt)
+### [Project Page](https://jerrypiglet.github.io/fipt-ucsd/) | [Paper](https://arxiv.org/abs/2304.05669) | [Preprocessed Data Download](https://mclab.ucsd.edu/FIPT_data_release/) | [Scene Data Generation from Scratch](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt)
 
 ## Setup
 
@@ -51,7 +52,7 @@ Also, install `torch_scatter`. See the [#FAQ](#faq) for detailed instructions.
 
 For the current release, we provide demo of one synthetic scene and one real world scene. They may not exactly match the results reported in the paper.
 
-You can download the processed data from [here](https://drive.google.com/drive/folders/1N8H1yR41MykUuSTyHvKGsZcuV2VjtWGr?usp=share_link) (download zip or folders). Or you can check [rui-indoorinv-data (branch: `fipt`)](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt) for generating data (synthetic/real) from scratch (i.e. synthetic scenes from [Mitsuba XML files by Benedikt Bitterli](https://benedikt-bitterli.me/resources/), or real world data from RAW HDR captures.).
+You can download the processed data from [here](https://mclab.ucsd.edu/FIPT_data_release/) (download zip or folders). Or you can check [rui-indoorinv-data (branch: `fipt`)](https://github.com/Jerrypiglet/rui-indoorinv-data/tree/fipt) for generating data (synthetic/real) from scratch (i.e. synthetic scenes from [Mitsuba XML files by Benedikt Bitterli](https://benedikt-bitterli.me/resources/), or real world data from RAW HDR captures.).
 
 Organize the data as:
 
